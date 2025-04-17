@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>360° Rotating 3D Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Anaheim');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Anaheim', sans-serif;
+  overflow: hidden;
+  background-image: url('assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #000; /* Fallback color */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0102.8deg);
+  color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.container {
+  width: 100%;
+  height: calc(100vh - 100px); /* Leaves room for header/footer if needed */
+  display: flex;
+  justify-content: center; /* Centers carousel horizontally */
+  align-items: center;     /* Centers carousel vertically */
+  perspective: 1200px;     /* Controls the 3D depth — increase for more subtle depth, decrease for stronger */
+  overflow: visible;       /* Ensures rotated elements aren’t cut off */
+  position: relative;
+  z-index: 1;
+}
+
+
+#carousel {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  transform-style: preserve-3d;
+  animation: rotate 25s infinite linear;
+  transform-origin: center center;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+
+#carousel:hover {
+  animation-play-state: paused;
+}
+
+#carousel figure {
+  position: absolute;
+  width: 260px;
+  height: 160px;
+  left: 10px;
+  top: 10px;
+  overflow: hidden;
+  border-radius: 12px;
+  transform-origin: center center;
+}
+
+#carousel figure img {
+  width: 100%;
+  height: 100%;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  filter: grayscale(0);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+#carousel figure img:hover {
+  filter: grayscale(0);
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Styling for the empty span cards (spacers) */
+#carousel figure span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 12px;
+}
+
+/* Calculate 360 / 14 = approx 25.7deg between each */
+#carousel figure:nth-child(1)  { transform: rotateY(0deg) translateZ(400px); }
+#carousel figure:nth-child(2)  { transform: rotateY(25.7deg) translateZ(400px); }
+#carousel figure:nth-child(3)  { transform: rotateY(51.4deg) translateZ(400px); }
+#carousel figure:nth-child(4)  { transform: rotateY(77.1deg) translateZ(400px); }
+#carousel figure:nth-child(5)  { transform: rotateY(102.8deg) translateZ(400px); }
+#carousel figure:nth-child(6)  { transform: rotateY(128.5deg) translateZ(400px); }
+#carousel figure:nth-child(7)  { transform: rotateY(154.2deg) translateZ(400px); }
+#carousel figure:nth-child(8)  { transform: rotateY(179.9deg) translateZ(400px); }
+#carousel figure:nth-child(9)  { transform: rotateY(205.6deg) translateZ(400px); }
+#carousel figure:nth-child(10) { transform: rotateY(231.3deg) translateZ(400px); }
+#carousel figure:nth-child(11) { transform: rotateY(257deg) translateZ(400px); }
+#carousel figure:nth-child(12) { transform: rotateY(282.7deg) translateZ(400px); }
+#carousel figure:nth-child(13) { transform: rotateY(308.4deg) translateZ(400px); }
+#carousel figure:nth-child(14) { transform: rotateY(334.1deg) translateZ(400px); }
+
+@keyframes rotate {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+@media (max-width: 600px) {
+  #carousel {
+    width: 200px;
+    height: 140px;
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Our SPecial Memories 💖</h2>
+    </div>
+    <div id="carousel">
+      <figure><img src="assets/img1.jpeg" alt="image1"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img2.jpeg" alt="image2"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img3.jpeg" alt="image3"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img4.jpeg" alt="image4"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img5.jpeg" alt="image5"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img6.jpeg" alt="image2"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img7.jpeg" alt="image1"></figure>
+      <figure>
+        <span></span>
+      </figure>
+      <figure><img src="assets/img8.jpeg" alt="image3"></figure>
+      
+    </div>
+  </div>
+
+</body>
+</html>
+
